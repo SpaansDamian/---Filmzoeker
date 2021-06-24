@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/style.css">
+                <script defer src="javascript/movieList.js"></script>
+                <script defer src="javascript/script.js"></script>
+                <title>Filmzoeker</title>
+        </head>
+        <body>
+                <header>
+                        <h1 class="title">Filmzoeker</h1>
+                        <nav>
+                                <div class="select">
+                                        <input type="radio" name="genre" id="newest" value="nieuwste-films">
+                                        <label for="nieuwste-films">Nieuwste Films</label>
+                                </div>
+                                <div class="select">
+                                        <input type="radio" name="genre" id="avengers" value="Avengers">
+                                        <label for="avengers">Avengers</label>
+                                </div>
+                                <div class="select">
+                                        <input type="radio" name="genre" id="x-men" value="X-Men">
+                                        <label for="x-men">X-Men</label>
+                                </div>
+                                <div class="select">
+                                        <input type="radio" name="genre" id="princess" value="Princess">
+                                        <label for="princess">Princess</label>
+                                </div>
+                                <div class="select">
+                                        <input type="radio" name="genre" id="batman" value="Batman">
+                                        <label for="batman">Batman</label>
+                                </div>
+                                <div class="select">
+                                        <label for="search">Zoek zelf op Titel:</label>
+                                        <input type="text" name="search" id="search">
+                                </div>
+                        </nav>
+                </header>
+                <main>
+                        <ul id="film-list"></ul>
+                </main>
+        </body>
+</html>

@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,500,700");
+@import "colors";
+@import "mobile";
+
+@media (min-width: 732px) {
+  $basicbackgroundcolor: $background-color;
+  $card-width: 200px;
+  $card-heigth: ($card-width * 1.375);
+
+  * {
+    font-family: raleway;
+    color: $general-color;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  body {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "header nav header"
+      "main main main";
+    background-color: $basicbackgroundcolor;
+  }
+
+  header {
+    grid-area: header;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    height: fit-content;
+    width: 100%;
+    background-color: $background-color_header;
+    z-index: 2000;
+  }
+
+  nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    background-color: $nav-color;
+    height: fit-content;
+    line-height: 2.5em;
+    margin: 0px 40px;
+
+    > .select {
+      margin-inline-start: 20px;
+      margin-inline-end: 20px;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
+      align-self: center;
+      font-size: 1.3em;
+    }
+
+    > input {
+      padding: 5px;
+      font-size: 1.2em;
+    }
+
+    > label {
+      margin-right: 20px;
+      margin-left: 5px;
+    }
+
+    #search {
+      color: $search-color;
+      font-size: 1em;
+      padding-left: 10px;
+      margin-bottom: 25px;
+    }
+  }
+
+  main {
+    margin-top: 50px;
+    grid-area: main;
+  }
+
+  ul {
+    display: flex;
+    margin-top: 150px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .filmcard {
+    width: $card-width;
+    height: $card-heigth;
+    margin: 5px;
+    background-color: transparent;
+    perspective: 1000px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1;
+    align-self: flex-start;
+
+    &:hover &__inner {
+      transform: rotateY(180deg);
+    }
+
+    &__inner {
+      text-align: center;
+      position: relative;
+      transition: transform 1s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px $filmcard-color_inner;
+    }
+
+    &__front &__back {
+      position: absolute;
+      height: $card-heigth;
+      width: $card-width;
+      border-radius: 10px;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      cursor: pointer;
+    }
+
+    &__back {
+      text-align: center;
+      background-color: $filmcard-color_back;
+      transform: rotateY(-180deg);
+
+      > button {
+        position: absolute;
+        border-radius: 0px 0px 10px 10px;
+        height: fit-content;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background-color: $filmcard-color_back__button;
+        border: 0px solid $filmcard-color_back__button;
+        align-items: center;
+        padding: 5px;
+        cursor: help;
+
+        > a {
+          cursor: help;
+          text-decoration: none;
+        }
+      }
+    }
+
+    &__title {
+      font-size: 18px;
+      margin-top: 50px;
+      margin-right: 5%;
+      margin-left: 5%;
+    }
+
+    &__year {
+      position: absolute;
+      text-align: right;
+      padding: 5px;
+      top: -25px;
+      right: -5px;
+      background-color: $filmcard-color_year__background;
+      color: $filmcard-color_year__color;
+      font-weight: 700;
+      transform: rotate(10deg);
+      opacity: 0.9;
+      z-index: 300;
+    }
+
+    &__type {
+      position: absolute;
+      text-align: left;
+      padding-left: 10px;
+      padding-top: 10px;
+      background-color: $filmcard-color_type__background;
+      color: $filmcard-color_type__color;
+      width: ($card-width - 20px);
+      height: 30px;
+      top: -20px;
+      border-radius: 10px 10px 0px 0px;
+      z-index: 280;
+    }
+  }
+}
