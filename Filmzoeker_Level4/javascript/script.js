@@ -1,22 +1,22 @@
 const movieListGet = document.querySelector("#film-list");
-let genreSelect = document.querySelector("nav");
+const genreSelect = document.querySelector("nav");
 let genreSearch = document.querySelector("#search");
 let resultMoviesList = [];
 
 movies.forEach(function (item) {
-  let filmURL = "https://www.imdb.com/title/" + item.imdbID + "/";
+  const filmURL = "https://www.imdb.com/title/" + item.imdbID + "/";
   item.ImdbURL = filmURL;
 });
 
-const makeMovieList = (choice) => {
+const makeMovieList = choice => {
   console.log("in makeMovieList: " + choice);
 
   if (choice === "nieuwste-films") {
     resultMoviesList = movies.filter((item) => item.Year >= 2014);
   } else {
-    for (a = 0; a < movies.length; a++) {
-      if (movies[a].Title.indexOf(choice) > -1) {
-        resultMoviesList.push(movies[a]);
+    for (i = 0; i < movies.length; i++) {
+      if (movies[i].Title.toLowerCase().includes(choice)) {
+        resultMoviesList.push(movies[i]);
       }
     }
   }
@@ -76,7 +76,12 @@ const listSelectedFilms = () => {
 genreSelect.addEventListener("click", selectBtn);
 
 function selectBtn() {
-  const radioBtn = document.querySelector('input[name="genre"]:checked').value;
+  let btnSelector = document.querySelector('input[name="genre"]:checked');
+  if (btnSelector === null) {
+    return;
+  }
+
+  const radioBtn = btnSelector.value;
 
   clearList();
 
@@ -86,7 +91,7 @@ function selectBtn() {
 // Code for the search field
 
 let typingTimer;
-let doneTypingInterval = 500;
+const doneTypingInterval = 500;
 let myInput = document.getElementById("search");
 
 myInput.addEventListener("keyup", () => {
@@ -94,9 +99,8 @@ myInput.addEventListener("keyup", () => {
 
   clearList();
   clearTimeout(typingTimer);
-  if (myInput.value) {
-    typingTimer = setTimeout(doneTyping, doneTypingInterval);
-  }
+  myInput.value.toLowerCase();
+  typingTimer = setTimeout(doneTyping, doneTypingInterval);
   genreSelect.addEventListener("click", selectBtn);
 });
 
@@ -104,7 +108,7 @@ function doneTyping() {
 
   console.log(myInput.value);
 
-  makeMovieList(myInput.value);
+  makeMovieList(myInput.value.toLowerCase());
 }
 
 function clearList() {
@@ -112,7 +116,9 @@ function clearList() {
   while (parent.firstChild) {
     parent.firstChild.remove();
   }
-  if (myInput.value === "zoek een titel") {
-    myInput.value = " ";
+  if (myInput.value.toLowerCase() === "zoek een titel") {
+    myInput.value.toLowerCase() = " ";
   }
 }
+
+makeMovieList('');
