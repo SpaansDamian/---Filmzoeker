@@ -1,6 +1,6 @@
 const movieListGet = document.querySelector("#film-list");
 const genreSelect = document.querySelector("nav");
-let genreSearch = document.querySelector("#search");
+const genreSearch = document.querySelector("#search");
 let resultMoviesList = [];
 
 movies.forEach(function (item) {
@@ -15,12 +15,12 @@ const makeMovieList = choice => {
     resultMoviesList = movies.filter((item) => item.Year >= 2014);
   } else {
     for (i = 0; i < movies.length; i++) {
-      if (movies[i].Title.toLowerCase().includes(choice)) {
+      if (movies[i].Title.toLowerCase().includes(choice.toLowerCase())) {
         resultMoviesList.push(movies[i]);
       }
     }
   }
-  listSelectedFilms(choice);
+  listSelectedFilms();
 };
 
 const listSelectedFilms = () => {
@@ -122,3 +122,4 @@ function clearList() {
 }
 
 makeMovieList('');
+
